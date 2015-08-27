@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/lorenzofox3/Smart-Table.svg?branch=master)](https://travis-ci.org/lorenzofox3/Smart-Table)
+[![Build Status](https://travis-ci.org/OpenCST/Smart-Table.svg)](https://travis-ci.org/OpenCST/Smart-Table)
 
 # Smart Table
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/lorenzofox3/Smart-Table?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
