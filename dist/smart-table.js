@@ -42,12 +42,12 @@ ng.module('smart-table')
 ng.module('smart-table')
   .controller('stTableController', ['$scope', '$parse', '$filter', '$attrs', function StTableController ($scope, $parse, $filter, $attrs) {
     var propertyName = $attrs.stTable;
-    this.displayGetter = $parse(propertyName);
-    this.displaySetter = this.displayGetter.assign;
+    var displayGetter = $parse(propertyName);
+    var displaySetter = displayGetter.assign;
     var safeGetter;
     var orderBy = $filter('orderBy');
     var filter = $filter('filter');
-    var safeCopy = copyRefs(this.displayGetter($scope));
+    var safeCopy = copyRefs(displayGetter($scope));
     var tableState = {
       sort: {},
       search: {},
@@ -87,6 +87,10 @@ ng.module('smart-table')
       }
     }
 
+    this.setCollection= function (collection) {
+        displaySetter($scope, collection || {});
+    }
+    
     if ($attrs.stSafeSrc) {
       safeGetter = $parse($attrs.stSafeSrc);
       $scope.$watch(function () {
@@ -170,7 +174,7 @@ ng.module('smart-table')
         pagination.start = pagination.start >= filtered.length ? (pagination.numberOfPages - 1) * pagination.number : pagination.start;
         output = filtered.slice(pagination.start, pagination.start + parseInt(pagination.number));
       }
-      this.displaySetter($scope, output || filtered);
+      displaySetter($scope, output || filtered);
     };
 
     /**
@@ -179,7 +183,7 @@ ng.module('smart-table')
      * @param {String} [mode] - "single" or "multiple" (multiple by default)
      */
     this.select = function select (row, mode) {
-      var rows = copyRefs(this.displayGetter($scope));
+      var rows = copyRefs(displayGetter($scope));
       var index = rows.indexOf(row);
       if (index !== -1) {
         if (mode === 'single') {
