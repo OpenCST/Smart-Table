@@ -4,4 +4,7 @@ example-app
 bower_components
 coverage
 .DS_Store
-test/.DS_Storesmart-table-website
+test/.DS_Store
+smart-table-website
+.project
+.settings
